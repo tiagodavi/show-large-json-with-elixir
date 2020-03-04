@@ -1,0 +1,108 @@
+<section class="row">
+  <%= form_for @conn, Routes.page_path(@conn, :index), [method: "get", id: "score-form"], fn f -> %>
+    <%= hidden_input f, :sort, [id: "sort", value: @sort]%>
+    <div class="row">
+      <div class="column column-25">
+        <%= text_input f, :filter, placeholder: "Player's name" %>
+      </div>
+      <div class="column">
+        <%= submit "Search", class: "button", name: "search", value: "filter" %>
+      </div>
+      <div class="column">
+        <%= submit "Export to CSV", class: "button button-green", name: "export", value: "csv" %>
+      </div>
+      <div class="column column-offset-50">
+        <%= link to: Routes.page_path(@conn, :index, offset: @previous, sort: @sort, filter: @filter), class: "button button-outline" do %>
+          <i class="fas fa-arrow-left"></i>
+          Previous Page
+        <%end%>
+      </div>
+      <div class="column">
+       <%= link to: Routes.page_path(@conn, :index, offset: @next, sort: @sort, filter: @filter), class: "button button-outline" do %>
+          Next Page
+          <i class="fas fa-arrow-right"></i>
+        <%end%>
+      </div>
+    </div> 
+  <% end %>
+</section>
+<section class="row">
+  <table>
+    <thead>
+      <tr>
+        <th>
+        Index
+         <a href="#">
+          <i class="fas fa-arrow-up sort" id="index-up"></i>
+         </a>
+         <a href="#">
+          <i class="fas fa-arrow-down sort" id="index-down"></i>
+         </a>
+        </th>
+        <th>Player</th>
+        <th>Team</th>
+        <th>Pos</th>
+        <th>Att/G</th>
+        <th>Att</th>
+        <th>
+          Yds
+         <a href="#">
+          <i class="fas fa-arrow-up sort" id="yds-up"></i>
+         </a>
+         <a href="#">
+          <i class="fas fa-arrow-down sort" id="yds-down"></i>
+         </a>
+        </th>
+        <th>Avg</th>
+        <th>Yds/G</th>
+        <th>
+         TD
+         <a href="#">
+          <i class="fas fa-arrow-up sort" id="td-up"></i>
+         </a>
+         <a href="#">
+          <i class="fas fa-arrow-down sort" id="td-down"></i>
+         </a>
+        </th>
+        <th>
+          Lng
+          <a href="#">
+            <i class="fas fa-arrow-up sort" id="lng-up"></i>
+          </a>
+          <a href="#">
+            <i class="fas fa-arrow-down sort" id="lng-down"></i>
+          </a>
+        </th>
+        <th>1st</th>
+        <th>1st%</th>
+        <th>20+</th>
+        <th>40+</th>
+        <th>FUM</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for player <- @players do %>
+        <tr>
+          <td><%= player.index %></td>
+          <td><%= player.player %></td>
+          <td><%= player.team %></td>
+          <td><%= player.pos %></td>
+          <td><%= player.att_g %></td>
+          <td><%= player.att %></td>
+
+          <td><%= player.yds %></td>
+          <td><%= player.avg %></td>
+          <td><%= player.yds_g %></td>
+          <td><%= player.td %></td>
+          <td><%= player.lng %></td>
+
+          <td><%= player._1_st %></td>
+          <td><%= player._1_st_perc %></td>
+          <td><%= player._20_plus %></td>
+          <td><%= player._40_plus %></td>
+          <td><%= player.fum %></td>
+        </tr>
+      <%end%>
+    </tbody>
+  </table>
+</section>
