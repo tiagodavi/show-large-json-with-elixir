@@ -29,3 +29,7 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 - Database: no
 - Stream Large JSON files: https://github.com/boudra/jaxon
 - Generate CSV files: https://github.com/beatrichartz/csv
+
+## Screen 
+
+![Image description](https://github.com/tiagodavi/show-large-json-with-elixir/blob/master/system.png)
