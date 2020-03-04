@@ -14,7 +14,8 @@ defmodule AppWeb.PageController do
         [
           players: players,
           sort: params["sort"],
-          filter: params["filter"]
+          filter: params["filter"],
+          offset: params["offset"],
         ] ++ build_pagination(players, params)
 
       render(conn, "index.html", assigns)
@@ -87,7 +88,7 @@ defmodule AppWeb.PageController do
       offset = String.to_integer(offset)
       args ++ [total: @players_per_page, offset: offset]
     else
-      args
+      handle_pagination(args, nil)
     end
   end
 

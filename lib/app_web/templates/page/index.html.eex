@@ -1,6 +1,7 @@
 <section class="row">
   <%= form_for @conn, Routes.page_path(@conn, :index), [method: "get", id: "score-form"], fn f -> %>
     <%= hidden_input f, :sort, [id: "sort", value: @sort]%>
+    <%= hidden_input f, :offset, [id: "offset", value: @offset]%>
     <div class="row">
       <div class="column column-25">
         <%= text_input f, :filter, placeholder: "Player's name" %>
